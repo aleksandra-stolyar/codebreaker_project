@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game results</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/application.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  </head>
+  <body>
+    <form method="post" action="/save_result">
+      <label for="name">Enter your name:</label>
+      <input type="text" id="name" name="name">
+      <input type="submit" value="Save my name!">
+    </form>
+
+    <div id="saved-results"></div>
+
+    <table >
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name:</th>
+          <th>Attempts:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results.each_with_index do |user,i| %>
+            <tr>
+              <th scope="row"><%= i+1 %></th>
+              <td><%= user[:name] %></td>
+              <td><%= user[:attempts]%></td>
+            </tr>
+        <% end %>        
+       </tbody> 
+    </table>
+  </body>
+</html>
