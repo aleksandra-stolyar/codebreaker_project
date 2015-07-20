@@ -6,51 +6,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Codebreaker game</title>
-     <!-- Bootstrap -->
-    <link href="/stylesheets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
-    <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/application.css"> -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- Bootstrap css -->
+    <link href="/stylesheets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Bootstrap js -->
+    <script src="/javascripts/js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="/javascripts/application.js"></script>
+
   </head>
   <body>
-    <div class="row">
-      <div class="col-md-12">
+    <div class="section">
+      <div class="container">
         <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <h1>Codebreaker game</h1>
-            <h2>Enter your code:</h2>
-
-            <form method="post" action="/check">
-              <input name="user-code" type="text" id="user-code" maxlength="4">
-              <input type="submit" value="Submit code!">
-            </form>
-        
-            <button id="hint">Hint</button>
-            <button id="new-game">Start New</button>
-
-            <table >
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Input:</th>
-                  <th>Result:</th>
-                </tr>
-              </thead>
-              <tbody id='results'>
-              </tbody> 
-            </table>      
-
-            <div id="dialog-confirm" style="display: none;">
-              <p><span style="float:left; margin:0 7px 20px 0;"></span>Do you want to save your score?</p>
-            </div>
+          <div class="col-md-12 text-center">
+            <h1 class="text-primary">Codebreaker game</h1>
           </div>
-          <div class="col-md-4"></div>
         </div>
       </div>
     </div>
-  </body> 
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12">
+              <h3 class="text-muted">Rules:</h3>
+              <p class="text-muted">A + indicates an exact match: one of the numbers in the guess is
+                the same as one of the numbers in the secret code and in the same position.
+                <br>
+                <br>A - indicates a number match: one of the numbers in the guess is the same
+                as one of the numbers in the secret code but in a different position.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <form role="form" method="post" action="/check">
+              <div class="form-group">
+                <div class="input-group input-group-lg">
+                  <input type="text" class="form-control" placeholder="Your code please..." name="user-code" id="user-code" maxlength="4">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success" type="submit" id="submit">Enter</button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-right">
+            <a class="btn btn-primary" id="hint">Get hint</a>
+          </div>
+          <div class="col-md-6 text-left">
+            <a class="btn btn-warning" id="new-game">Start new</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Attempt №</th>
+                  <th>Input</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody id="results"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="dialog-confirm" style="display: none">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            <h4 class="modal-title">Saving...</h4>
+          </div>
+          <div class="modal-body">
+            <p>Do you want to save score?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="yes">Yes</button>
+            <button type="button" class="btn btn-default" id="no">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

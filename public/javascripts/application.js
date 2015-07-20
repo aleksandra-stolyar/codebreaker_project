@@ -1,5 +1,8 @@
 $(document).ready(function() {
-  $('input[name=user-code]').focus();
+  $("#user-code").keyup(function() {
+    $("#user-code").val(this.value.match(/[1-6]*/));
+  });
+
   $("form").submit(function(e) {
     e.preventDefault()
     if($.trim($('#user-code').val()) == ''){
@@ -15,27 +18,23 @@ $(document).ready(function() {
 
         if(response.status == 'win') {
           alert("You won!");
-          $("#dialog-confirm").dialog({
-            resizable: false,
-            height: 200,
-            modal: true,
-            buttons: {
-              "Yes": function() {
-                $(this).dialog("close");
-                window.location.replace("/saved_results");
-              },
-              "No": function() {
-                $(this).dialog("close");
-              }
-            }
+          $("#dialog-confirm").modal("show");
+          $("#yes").click(function() {
+            $("#dialog-confirm").modal("hide");
+            window.location.replace("/saved_results");
+          });
+          $("#no").click(function() {
+            $("#dialog-confirm").modal("hide");
           });
         }
         else if(response.status == 'loose') {
           alert("You lost!");
+          window.location.replace("/")
         }
         else {
           $("#results").append(result);
           $("#user-code").val("");
+          $('input[name=user-code]').focus();
         }
       }
     });
@@ -48,7 +47,7 @@ $(document).ready(function() {
       type: 'POST',
       dataType: 'json',
       success: function(response){
-        var visible_hint = $('<div class="hint"><span class="hint">'+response.hint+'</span></div>');
+        var visible_hint = $('<div class="hint"><span class="hint text-muted text-uppercase"><font size="5">Hint: <span class="text-primary">'+response.hint+'</span></font></span></div>');
         console.log(response);
         $('#hint').replaceWith(visible_hint);
         $('input[name=user-code]').focus();

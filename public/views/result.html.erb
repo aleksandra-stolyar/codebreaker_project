@@ -2,35 +2,101 @@
 <html>
   <head>
     <title>Game results</title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/application.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- Bootstrap css -->
+    <link href="/stylesheets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   </head>
-  <body>
-    <form method="post" action="/save_result">
-      <label for="name">Enter your name:</label>
-      <input type="text" id="name" name="name">
-      <input type="submit" value="Save my name!">
-    </form>
-
-    <div id="saved-results"></div>
-
-    <table >
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name:</th>
-          <th>Attempts:</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @results.each_with_index do |user,i| %>
-            <tr>
-              <th scope="row"><%= i+1 %></th>
-              <td><%= user[:name] %></td>
-              <td><%= user[:attempts]%></td>
-            </tr>
-        <% end %>        
-       </tbody> 
-    </table>
+<body>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <form role="form" method="post" action="/save_result">
+              <div class="form-group">
+                <div class="input-group input-group-lg">
+                  <input type="text" class="form-control" placeholder="Enter your name" id="name" name="name">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success" type="submit">Save your results!</button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center">
+            <form role="form" method="post" action="/">
+              <button class="btn btn-lg btn-warning">Play new game</button>
+            </form>  
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Player</th>
+                  <th>Number or attempts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @results.each_with_index do |user,i| %>
+                  <tr>
+                    <th scope="row"><%= i+1 %></th>
+                    <td><%= user[:name] %></td>
+                    <td><%= user[:attempts]%></td>
+                  </tr>
+                <% end %> 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
