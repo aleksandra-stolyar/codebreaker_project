@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/aleksandra-stolyar/codebreaker.git
-  revision: 5d5bfae9e67950be2f402ee6defab6f3cb079986
+  revision: 7fb1e506261298a8e0f37031b1eb74568b854fec
   specs:
-    codebreaker (0.0.1)
+    codebreaker (0.1.1)
 
 GEM
   remote: https://rubygems.org/
