@@ -25,6 +25,7 @@ $(document).ready(function() {
           });
           $("#no").click(function() {
             $("#dialog-confirm").modal("hide");
+            location.reload()
           });
         }
         else if(response.status == 'loose') {
